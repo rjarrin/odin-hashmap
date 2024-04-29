@@ -60,6 +60,21 @@ class HashMap {
         }
         return false;
     }
+
+    // Remove a key-value pair from the hashmap
+    remove(key) {
+        const index = this.hash(key);
+        const bucket = this.buckets[index];
+        if (bucket) {
+            const entryIndex = bucket.findIndex(bucketEntry => bucketEntry.key === key);
+            if (entryIndex > -1) {
+                bucket.splice(entryIndex, 1);
+                this.size -= 1;
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 export default HashMap;

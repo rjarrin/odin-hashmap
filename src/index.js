@@ -19,4 +19,17 @@ console.log(
     hashMap.has('key1') === true ? 'HashMap has passed' : 'HashMap has failed',
 );
 
+// Test update value
+hashMap.set('key1', 'newValue1');
+console.log(
+    hashMap.get('key1') === 'newValue1'
+        ? 'HashMap update value passed'
+        : 'HashMap update value failed',
+);
+
+// Test remove
+hashMap.remove('key1');
+console.log(hashMap.has('key1') === false ? 'HashMap remove passed' : 'HashMap remove failed');
+
+
 console.log('Done');
