@@ -107,6 +107,66 @@ console.log(
 
 console.log('Done with HashMap testing\n');
 
+// Testing HashSet
 const hashSet = new HashSet();
+
+// Test add
+console.log('Testing add:');
+hashSet.add('element1');
+console.assert(hashSet.has('element1'), 'Hashset adding failed');
+console.assert(
+    hashSet.size() === 1,
+    'Size should be 1 after adding one element',
+);
+
+// Test add with duplicate element
+console.log('Testing add with duplicate element:');
+hashSet.add('element1');
+console.assert(
+    hashSet.has('element1'),
+    'Adding a duplicate element should not change the set',
+);
+console.assert(
+    hashSet.size() === 1,
+    'Size should still be 1 after attempting to add a duplicate element',
+);
+
+// Test add with another element
+console.log('Testing add with another element:');
+hashSet.add('element2');
+console.assert(hashSet.has('element2'), 'Adding another element failed');
+console.assert(
+    hashSet.size() === 2,
+    'Size should be 2 after adding two unique elements',
+);
+
+// Test remove
+console.log('Testing remove:');
+hashSet.remove('element1');
+console.assert(!hashSet.has('element1'), 'Failed to remove the element');
+console.assert(hashSet.size() === 1, 'Size should be 1 after element removal');
+
+// Test remove with non-existent element
+console.log('Testing remove with non-existent element:');
+hashSet.remove('element3');
+console.assert(
+    hashSet.size() === 1,
+    'Size should not change after attempting to remove a non-existent element',
+);
+
+// Test clear
+console.log('Testing clear:');
+hashSet.clear();
+console.assert(
+    hashSet.size() === 0,
+    'Clearing the set should result in a size of 0',
+);
+
+// Test has on empty set
+console.log('Testing has with an empty set:');
+console.assert(
+    !hashSet.has('element2'),
+    'Checking for an element in an empty set should return false',
+);
 
 console.log('Done with HashSet testing');
