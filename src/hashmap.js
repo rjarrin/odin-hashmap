@@ -75,6 +75,17 @@ class HashMap {
         }
         return false;
     }
+
+    // Return the number of stored keys in the hashmap
+    length() {
+        return this.size;
+    }
+
+    // Remove all entries in the hashmap
+    clear() {
+        this.buckets = [];
+        this.size = 0;
+    }
 }
 
 export default HashMap;

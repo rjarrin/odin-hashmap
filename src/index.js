@@ -31,5 +31,12 @@ console.log(
 hashMap.remove('key1');
 console.log(hashMap.has('key1') === false ? 'HashMap remove passed' : 'HashMap remove failed');
 
+// Test length
+hashMap.set('key2', 'value2');
+console.log(hashMap.length() === 1 ? 'HashMap length passed' : 'HashMap length failed');
+
+// Test clear
+hashMap.clear();
+console.log(hashMap.length() === 0 ? 'HashMap clear passed' : 'HashMap clear failed');
 
 console.log('Done');
