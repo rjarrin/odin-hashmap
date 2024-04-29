@@ -4,6 +4,7 @@
 /* eslint-disable import/extensions */
 
 import HashMap from './hashmap.js';
+import HashSet from './hashset.js';
 
 // Testing HashMap
 const hashMap = new HashMap();
@@ -47,11 +48,32 @@ console.log(
     hashMap.length() === 0 ? 'HashMap clear passed' : 'HashMap clear failed',
 );
 
+// Testing resize logic
+hashMap.set('key3', 'value3');
+hashMap.set('key4', 'value4');
+hashMap.set('key13', 'value3');
+hashMap.set('key14', 'value4');
+hashMap.set('key113', 'value3');
+hashMap.set('key114', 'value4');
+hashMap.set('key1113', 'value3');
+hashMap.set('key1114', 'value4');
+hashMap.set('key23', 'value3');
+hashMap.set('key24', 'value4');
+hashMap.set('key223', 'value3');
+hashMap.set('key224', 'value4');
+hashMap.set('key2223', 'value3');
+hashMap.set('key2224', 'value4');
+hashMap.set('key123', 'value3');
+hashMap.set('key124', 'value4');
+hashMap.set('key12223', 'value3');
+hashMap.set('key12224', 'value4');
+console.log(hashMap.buckets);
+console.log(hashMap.length());
+hashMap.clear();
+
 // Test keys, values, and entries
 hashMap.set('key3', 'value3');
 hashMap.set('key4', 'value4');
-
-console.log(hashMap.buckets);
 
 // Test keys
 console.log(
@@ -83,4 +105,8 @@ console.log(
         : 'HashMap entries failed',
 );
 
-console.log('Done');
+console.log('Done with HashMap testing\n');
+
+const hashSet = new HashSet();
+
+console.log('Done with HashSet testing');

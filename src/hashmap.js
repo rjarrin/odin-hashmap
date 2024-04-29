@@ -34,6 +34,8 @@ class HashMap {
         } else {
             this.buckets[index].push({ key, value });
             this.size += 1;
+            // Check if the hashmap needs to be resized
+            this.checkResize();
         }
     }
 
@@ -105,6 +107,31 @@ class HashMap {
         return this.buckets.flatMap((bucket) =>
             bucket.map((entry) => [entry.key, entry.value]),
         );
+    }
+
+    // Determine whether the hashmap capacity needs to be resized
+    checkResize() {
+        const loadFactor = this.size / this.buckets.length;
+        if (loadFactor > 0.7) {
+            this.resize();
+        }
+    }
+
+    // Resize the hashmap's buckets array
+    resize() {
+        const oldBuckets = this.buckets;
+        // Double the size
+        this.buckets = new Array(this.buckets.length * 2);
+        // Reset the size prior to re-adding all entries
+        this.size = 0;
+        oldBuckets.forEach((bucket) => {
+            if (bucket) {
+                bucket.forEach((entry) => {
+                    // Re-add entries to the resized hashmap
+                    this.set(entry.key, entry.value);
+                });
+            }
+        });
     }
 }
 
