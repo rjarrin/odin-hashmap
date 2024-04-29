@@ -2,17 +2,14 @@ class HashMap {
     // Only handle keys of type strings for this implementation
     constructor() {
         // Initialize the buckets array to store key-value pairs
-        this.buckets = [];
+        this.buckets = new Array(10);
         this.size = 0;
     }
 
-    // Takes a key and produces a hash code with it.
     hash(key) {
         let hashCode = 0;
         const primeNumber = 31;
-        // Iterate over each character in the key to generate the hash code
         for (let i = 0; i < key.length; i += 1) {
-            // Apply modulo operator on each iteration to prevent overflow
             hashCode =
                 (primeNumber * hashCode + key.charCodeAt(i)) %
                 this.buckets.length;
@@ -66,7 +63,9 @@ class HashMap {
         const index = this.hash(key);
         const bucket = this.buckets[index];
         if (bucket) {
-            const entryIndex = bucket.findIndex(bucketEntry => bucketEntry.key === key);
+            const entryIndex = bucket.findIndex(
+                (bucketEntry) => bucketEntry.key === key,
+            );
             if (entryIndex > -1) {
                 bucket.splice(entryIndex, 1);
                 this.size -= 1;
@@ -83,8 +82,29 @@ class HashMap {
 
     // Remove all entries in the hashmap
     clear() {
-        this.buckets = [];
+        this.buckets = new Array(this.buckets.length);
         this.size = 0;
+    }
+
+    // Return an array containing all the keys inside the hashmap
+    keys() {
+        return this.buckets.flatMap((bucket) =>
+            bucket.map((entry) => entry.key),
+        );
+    }
+
+    // Return an array containing all values
+    values() {
+        return this.buckets.flatMap((bucket) =>
+            bucket.map((entry) => entry.value),
+        );
+    }
+
+    // Return an array that contains each [key, value] pair
+    entries() {
+        return this.buckets.flatMap((bucket) =>
+            bucket.map((entry) => [entry.key, entry.value]),
+        );
     }
 }
 

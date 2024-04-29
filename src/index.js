@@ -29,14 +29,58 @@ console.log(
 
 // Test remove
 hashMap.remove('key1');
-console.log(hashMap.has('key1') === false ? 'HashMap remove passed' : 'HashMap remove failed');
+console.log(
+    hashMap.has('key1') === false
+        ? 'HashMap remove passed'
+        : 'HashMap remove failed',
+);
 
 // Test length
 hashMap.set('key2', 'value2');
-console.log(hashMap.length() === 1 ? 'HashMap length passed' : 'HashMap length failed');
+console.log(
+    hashMap.length() === 1 ? 'HashMap length passed' : 'HashMap length failed',
+);
 
 // Test clear
 hashMap.clear();
-console.log(hashMap.length() === 0 ? 'HashMap clear passed' : 'HashMap clear failed');
+console.log(
+    hashMap.length() === 0 ? 'HashMap clear passed' : 'HashMap clear failed',
+);
+
+// Test keys, values, and entries
+hashMap.set('key3', 'value3');
+hashMap.set('key4', 'value4');
+
+console.log(hashMap.buckets);
+
+// Test keys
+console.log(
+    JSON.stringify(hashMap.keys().sort()) === JSON.stringify(['key3', 'key4'])
+        ? 'HashMap keys passed'
+        : 'HashMap keys failed',
+);
+
+// Test values
+console.log(
+    JSON.stringify(hashMap.values().sort()) ===
+        JSON.stringify(['value3', 'value4'])
+        ? 'HashMap values passed'
+        : 'HashMap values failed',
+);
+
+// Test entries
+console.log(
+    JSON.stringify(
+        hashMap.entries().sort((a, b) => a[0].localeCompare(b[0])),
+    ) ===
+        JSON.stringify(
+            [
+                ['key3', 'value3'],
+                ['key4', 'value4'],
+            ].sort((a, b) => a[0].localeCompare(b[0])),
+        )
+        ? 'HashMap entries passed'
+        : 'HashMap entries failed',
+);
 
 console.log('Done');
